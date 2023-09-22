@@ -17,7 +17,7 @@ public class TiltForwardTimedCom extends CommandBase {
   private Timer timer = new Timer();
   public TiltForwardTimedCom(LadderTiltSub subsystem, double time) {
     this.m_PIDController = new PIDController(Constants.tiltPVal, Constants.tiltIVal, Constants.tiltDVal);
-    m_PIDController.setSetpoint(-Constants.tiltTopSetpoint);
+    m_PIDController.setSetpoint(-Constants.tiltBackSetpoint);
     
     m_subsystem = subsystem;
     

@@ -54,8 +54,8 @@ public final class Constants {
   public static double tiltPVal = 0.0025;
   public static double tiltIVal = 0;
   public static double tiltDVal = 0;
-  public static double tiltTopSetpoint = 20;
-  public static double tiltBotSetpoint = 0;
+  public static double tiltForSetpoint = 4.75;
+  public static double tiltBackSetpoint = 0;
   //claw
   public static int clawLeftMotorChannel = 23;
   public static int clawRightMotorChannel = 10;
