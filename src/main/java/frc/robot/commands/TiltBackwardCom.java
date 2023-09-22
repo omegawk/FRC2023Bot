@@ -4,7 +4,7 @@
 
 package frc.robot.commands;
 import frc.robot.Constants;
-import frc.robot.subsystems.LadderSub;
+// import frc.robot.subsystems.LadderSub;
 import frc.robot.subsystems.LadderTiltSub;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.math.controller.PIDController;
@@ -12,11 +12,12 @@ import edu.wpi.first.math.controller.PIDController;
 public class TiltBackwardCom extends CommandBase {
   private final LadderTiltSub m_subsystem;
   private final PIDController m_PIDController;
+  private double limiter;
   
-  public TiltBackwardCom(LadderTiltSub subsystem) {
+  public TiltBackwardCom(LadderTiltSub subsystem, double limiter) {
     this.m_PIDController = new PIDController(Constants.tiltPVal, Constants.tiltIVal, Constants.tiltDVal);
-    m_PIDController.setSetpoint(Constants.tiltBotSetpoint);
-    
+    m_PIDController.setSetpoint(Constants.tiltBackSetpoint);
+    this.limiter = limiter;
     m_subsystem = subsystem;
     
     addRequirements(subsystem);
@@ -31,7 +32,7 @@ public class TiltBackwardCom extends CommandBase {
   @Override
   public void execute() {
     // double speed = m_PIDController.calculate(m_subsystem.getTiltEncoder());
-    m_subsystem.driveTilt(0.2);
+    m_subsystem.driveTilt(-0.4);
   }
 
  
@@ -43,6 +44,9 @@ public class TiltBackwardCom extends CommandBase {
   
   @Override
   public boolean isFinished() {
-    return false;
+    if(m_subsystem.getTiltEncoder() < limiter){
+      return true;
+    }else{
+      return false;}
   }
 }
