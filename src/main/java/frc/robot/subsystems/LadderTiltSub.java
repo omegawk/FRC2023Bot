@@ -18,7 +18,6 @@ public class LadderTiltSub extends SubsystemBase {
   private final CANSparkMax tiltMotor = new CANSparkMax(Constants.elevatorTiltMotorChannel, MotorType.kBrushed);
   private final RelativeEncoder tiltEncoder = tiltMotor.getEncoder(SparkMaxRelativeEncoder.Type.kQuadrature, 8192);
   public LadderTiltSub() {
-    
   }
 
   public void driveTilt(double speed){
